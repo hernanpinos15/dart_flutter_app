@@ -1,68 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:english_words/english_words.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'My App HP',
-      home: RandomWords(),
-      // home: Scaffold(
-      //   appBar: AppBar(
-      //     title: Text('My App HP'),
-      //   ),
-      //   body: Center(
-      //     // child: Text('Empezamos'),
-      //     child: RandomWords(),
-      //   ),
-      // ),
-    );
-  }
-}
-
-class RandomWordsState extends State<RandomWords> {
-  final _suggestions = <WordPair>[];
-  final _biggerFont = const TextStyle(fontSize: 18.0);
-
-  Widget _buildSuggestions() {
-    return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemBuilder: /*1*/ (context, i) {
-          if (i.isOdd) return Divider(); /*2*/
-
-          final index = i ~/ 2; /*3*/
-          if (index >= _suggestions.length) {
-            _suggestions.addAll(generateWordPairs().take(10)); /*4*/
-          }
-          return _buildRow(_suggestions[index]);
-        });
-  }
-
-  Widget _buildRow(WordPair pair) {
-    return ListTile(
-      title: Text(
-        pair.asPascalCase,
-        style: _biggerFont,
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('My App HP'),
+        ),
+        // body: Image.network(
+        //   'https://picsum.photos/250?image=9',
+        // ),
+        body: Center(
+          child: Container(
+            width: 380,
+            height: 800,
+            color: Colors.red,
+            // child: Image.asset(
+            child: Image.network(
+              // 'assets/fondo.png',
+              'https://i.imgur.com/xTr1BrW.png',
+              fit: BoxFit.scaleDown,
+              scale: 1,
+              repeat: ImageRepeat.repeatY,
+            ),
+          ),
+        ),
       ),
     );
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Startup Name Generator'),
-      ),
-      body: _buildSuggestions(),
-    );
-  }
-
-  
-}
-
-class RandomWords extends StatefulWidget {
-  @override
-  RandomWordsState createState() => new RandomWordsState();
 }
